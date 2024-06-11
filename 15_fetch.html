@@ -39,5 +39,46 @@
 
 </script>
 
+<script>
+
+  /* XML 요청 */
+
+  const options = {
+    method: 'GET'
+  }
+
+  // XML 데이터를 일반 텍스트로 받은 뒤 XMLDocument 로 변경해서 처리하기
+
+  fetch('https://thetestrequest.com/authors.xml', options)
+  .then(response=>response.text())
+  .then(resData=>{
+    const domParser = new DOMParser();
+    const xmlDocument = domParser.parseFromString(resData, 'application/xml');
+    console.log(xmlDocument);
+    console.log(xmlDocument.getElementsByTagName('object'));
+  })
+
+</script>
+
+<div>
+  <button type="button" id="display-btn">이미지 표시하기</button>
+</div>
+<div>
+<img id="image" alt="이미지가 표시됩니다">
+</div>
+<script>
+
+/* blob() 데이터 */
+
+document.getElementById('display-btn').addEventListener('click', (evt)=>{
+  fetch('../assets/images/404.jpg')
+  .then(response=>response.blob())
+  .then(resData=>{
+    document.getElementById('image').src = URL.createObjectURL(resData)
+  })
+})
+
+</script>
+
 </body>
 </html>
