@@ -53,12 +53,21 @@
   <div>
     <button type="button" id="btn3">버튼3</button>
   </div>
+  <form id="parameters">
+    <input type="hidden" name="serviceKey" value="bEQBRPHjt0tZrc7EsL0T8usfsZ1%2BwT%2B5jqamBef%2FErC%2F5ZO6N7nYdRmrwR91bh5d3I1AQeY5qdbJOF6Kv0U1CQ%3D%3D">
+    <input type="hidden" name="searchYear" value="2022">
+    <input type="hidden" name="siDo" value="2300">
+    <input type="hidden" name="guGun" value="2304">
+    <input type="hidden" name="numOfRows" value="10">
+    <input type="hidden" name="pageNo" value="1">
+    <input type="hidden" name="type" value="json">
+  </form>
   <script>
     $('#btn3').on('click', evt=>{
       $.ajax({
         type: 'GET',
         url: 'http://apis.data.go.kr/B552061/AccidentDeath/getRestTrafficAccidentDeath',
-        data: 'serviceKey=bEQBRPHjt0tZrc7EsL0T8usfsZ1%2BwT%2B5jqamBef%2FErC%2F5ZO6N7nYdRmrwR91bh5d3I1AQeY5qdbJOF6Kv0U1CQ%3D%3D&searchYear=2022&siDo=2300&guGun=2304&type=json&numOfRows=10&pageNo=1',
+        data: $('#parameters').serialize(),
         dataType: 'json',
         success: resData=>{
           console.log(resData);
